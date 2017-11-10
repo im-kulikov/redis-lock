@@ -2,9 +2,8 @@ language: go
 env:
   - "PATH=/home/travis/gopath/bin:$PATH"
 before_install:
-  - go get github.com/axw/gocov/gocov
+  - go get golang.org/x/tools/cmd/cover
   - go get github.com/mattn/goveralls
-  - go get code.google.com/p/go.tools/cmd/cover
 install:
   - go get -t ./...
 services:
