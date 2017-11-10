@@ -18,7 +18,7 @@ var _ = Describe("Lock", func() {
 	var subject *Lock
 
 	var newLock = func() *Lock {
-		return NewLock(redisClient, testRedisKey, &LockOptions{
+		return NewLock(redisClient, testRedisKey, &Options{
 			WaitTimeout: 100 * time.Millisecond,
 			LockTimeout: time.Second,
 		})

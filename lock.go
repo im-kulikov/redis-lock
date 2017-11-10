@@ -23,14 +23,14 @@ type RedisClient interface {
 type Lock struct {
 	client RedisClient
 	key    string
-	opts   LockOptions
+	opts   Options
 
 	token string
 	mutex sync.Mutex
 }
 
 // ObtainLock is a shortcut for NewLock().Lock()
-func ObtainLock(client RedisClient, key string, opts *LockOptions) (*Lock, error) {
+func ObtainLock(client RedisClient, key string, opts *Options) (*Lock, error) {
 	lock := NewLock(client, key, opts)
 	if ok, err := lock.Lock(); err != nil || !ok {
 		return nil, err
@@ -39,9 +39,9 @@ func ObtainLock(client RedisClient, key string, opts *LockOptions) (*Lock, error
 }
 
 // NewLock creates a new distributed lock on key
-func NewLock(client RedisClient, key string, opts *LockOptions) *Lock {
+func NewLock(client RedisClient, key string, opts *Options) *Lock {
 	if opts == nil {
-		opts = new(LockOptions)
+		opts = new(Options)
 	}
 	return &Lock{client: client, key: key, opts: *opts.normalize()}
 }

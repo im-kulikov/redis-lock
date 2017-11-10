@@ -4,8 +4,8 @@ import "time"
 
 const minWaitRetry = 10 * time.Millisecond
 
-// LockOptions describe the options for the lock
-type LockOptions struct {
+// Options describe the options for the lock
+type Options struct {
 	// The maximum duration to lock a key for
 	// Default: 5s
 	LockTimeout time.Duration
@@ -20,10 +20,7 @@ type LockOptions struct {
 	WaitRetry time.Duration
 }
 
-func (o *LockOptions) normalize() *LockOptions {
-	if o == nil {
-		o = new(LockOptions)
-	}
+func (o *Options) normalize() *Options {
 	if o.LockTimeout < 1 {
 		o.LockTimeout = 5 * time.Second
 	}
