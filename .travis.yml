@@ -8,7 +8,7 @@ install:
   - go get -t ./...
 services:
   - redis-server
-script:
+after_success:
   - go test -v -covermode=count -coverprofile=coverage.out ./...
   - goveralls -coverprofile=coverage.out -service travis-ci -repotoken $COVERALLS_TOKEN
 go:
